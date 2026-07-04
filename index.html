@@ -3,1419 +3,658 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏛️ In the Museum — Practice Activities</title>
+<title>🏛️ Super Minds 4 — Unit 1: In the Museum</title>
 <style>
-:root{
-  --gold:#c9a227;--dkgold:#9e7b10;--navy:#1a2e5a;--dknavy:#0f1e3d;
-  --brown:#5c3d1a;--bg:#fdf6e3;--card:#fffdf7;
-  --green:#1e6e30;--red:#922020;--blue:#1a3a8e;
-}
+:root{--gold:#c9a227;--navy:#1a2e5a;--bg:#fdf6e3;--card:#fffdf7;--green:#1e6e30;--red:#922020;--blue:#1a3a8e;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:#2d2d2d;min-height:100vh;}
-
-/* HEADER */
-header{
-  background:linear-gradient(160deg,#0d1b3e 0%,#1a2e5a 50%,#243b6e 100%);
-  color:#fff;padding:28px 20px 24px;text-align:center;
-  border-bottom:4px solid var(--gold);
-}
-header::before{
-  content:'🏛️';font-size:3.5em;display:block;margin-bottom:8px;
-  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-}
-header h1{font-size:clamp(1.6em,5vw,2.8em);color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,0.4);margin-bottom:6px;}
-header .meta{font-size:.95em;color:rgba(255,255,255,.7);margin-bottom:4px;}
-header .tracks{font-size:.85em;color:var(--gold);letter-spacing:1px;font-weight:600;}
-
-/* STICKY BAR */
-.sticky-bar{
-  position:sticky;top:0;z-index:100;
-  background:var(--brown);padding:10px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,0.3);
-}
-.score-badge{
-  background:rgba(201,162,39,.2);border:2px solid var(--gold);
-  border-radius:20px;padding:5px 14px;color:var(--gold);
-  font-weight:700;font-size:1em;white-space:nowrap;
-}
-.tab-row{display:flex;flex-wrap:wrap;gap:4px;}
-.tab-btn{
-  width:30px;height:30px;border-radius:50%;
-  border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);
-  color:#fff;font-size:.78em;font-weight:700;cursor:pointer;
-  transition:all .2s;display:flex;align-items:center;justify-content:center;
-}
-.tab-btn:hover{background:rgba(255,255,255,.2);}
-.tab-btn.current{border-color:#fff;box-shadow:0 0 6px rgba(255,255,255,.5);}
-.tab-btn.done{background:var(--gold);border-color:var(--gold);color:#1a1a2e;}
-
-/* NOTE BANNER */
-.note-banner{
-  background:#fffbe6;border-left:5px solid var(--gold);
-  padding:10px 16px;font-size:.85em;color:#5c4a00;
-  max-width:900px;margin:14px auto 0;border-radius:0 8px 8px 0;
-}
-
-/* MAIN */
-main{max-width:900px;margin:12px auto 40px;padding:0 16px;}
-
-/* EXERCISE CARD */
-.ex{display:none;background:var(--card);border-radius:16px;
-  border:2px solid rgba(201,162,39,.25);
-  box-shadow:0 6px 24px rgba(0,0,0,.1);overflow:hidden;
-  animation:fadeUp .4s ease;margin-top:12px;}
+header{background:linear-gradient(160deg,#0d1b3e,#1a2e5a,#243b6e);color:#fff;padding:24px 20px;text-align:center;border-bottom:4px solid var(--gold);}
+header h1{font-size:clamp(1.5em,5vw,2.4em);color:var(--gold);margin-bottom:4px;}
+header p{font-size:.9em;color:rgba(255,255,255,.7);}
+.sticky{position:sticky;top:0;z-index:100;background:#3d2a0f;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.score-badge{background:rgba(201,162,39,.2);border:2px solid var(--gold);border-radius:20px;padding:4px 12px;color:var(--gold);font-weight:700;font-size:.9em;}
+.tabs{display:flex;flex-wrap:wrap;gap:3px;}
+.tab{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-size:.72em;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.tab:hover{background:rgba(255,255,255,.2);}
+.tab.active{border-color:#fff;box-shadow:0 0 6px rgba(255,255,255,.5);}
+.tab.done{background:var(--gold);border-color:var(--gold);color:#1a1a2e;}
+main{max-width:860px;margin:12px auto 40px;padding:0 14px;}
+.ex{display:none;background:var(--card);border-radius:14px;border:2px solid rgba(201,162,39,.25);box-shadow:0 4px 20px rgba(0,0,0,.08);margin-top:12px;overflow:hidden;animation:fadeIn .3s ease;}
 .ex.show{display:block;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-
-.ex-head{
-  background:linear-gradient(135deg,var(--navy),#2a4a8e);
-  color:#fff;padding:16px 22px;display:flex;align-items:flex-start;gap:14px;
-}
-.ex-num{
-  background:var(--gold);color:#1a1a2e;
-  width:38px;height:38px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1em;font-weight:700;flex-shrink:0;margin-top:2px;
-}
-.ex-head h2{font-size:1.15em;color:var(--gold);margin-bottom:3px;}
-.ex-head p{font-size:.85em;color:rgba(255,255,255,.7);}
-
-.ex-body{padding:22px;}
-.track-tag{
-  display:inline-block;background:rgba(201,162,39,.12);
-  border:1px solid rgba(201,162,39,.4);border-radius:20px;
-  padding:3px 12px;font-size:.8em;color:var(--dkgold);
-  font-weight:700;letter-spacing:.5px;margin-bottom:14px;
-}
-.instruct{
-  background:#edf2ff;border-left:4px solid var(--blue);
-  border-radius:0 8px 8px 0;padding:10px 14px;
-  font-size:.92em;color:var(--blue);margin-bottom:18px;line-height:1.55;
-}
-
-/* WORD BANK */
-.wbank{
-  background:#f5f0e8;border:2px dashed var(--gold);border-radius:10px;
-  padding:12px 14px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:7px;
-}
-.wbank-lbl{font-size:.8em;color:var(--brown);font-weight:700;width:100%;margin-bottom:3px;}
-.wtag{
-  background:var(--gold);color:#1a1a2e;border:none;border-radius:20px;
-  padding:5px 13px;font-size:.88em;font-weight:700;cursor:pointer;transition:all .2s;
-}
-.wtag:hover{background:var(--dkgold);color:#fff;transform:scale(1.05);}
-.wtag.used{opacity:.3;pointer-events:none;}
-
-/* FEEDBACK */
-.fb{margin-top:12px;padding:11px 15px;border-radius:10px;font-weight:600;font-size:.92em;display:none;line-height:1.5;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.ex-head{background:linear-gradient(135deg,var(--navy),#2a4a8e);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;}
+.ex-num{background:var(--gold);color:#1a1a2e;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;}
+.ex-head h2{font-size:1.05em;color:var(--gold);}
+.ex-head small{font-size:.8em;color:rgba(255,255,255,.6);display:block;}
+.ex-body{padding:18px;}
+.audio-wrap{margin-bottom:14px;}
+.audio-wrap audio{width:100%;border-radius:8px;}
+.audio-label{font-size:.8em;color:#888;margin-bottom:4px;}
+.instruct{background:#edf2ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:9px 12px;font-size:.88em;color:var(--blue);margin-bottom:14px;line-height:1.5;}
+.fb{margin-top:10px;padding:10px 14px;border-radius:8px;font-weight:600;font-size:.88em;display:none;line-height:1.4;}
 .fb.ok{background:#e8f5e9;color:var(--green);border:2px solid #a5d6a7;display:block;}
 .fb.part{background:#fff8e1;color:#856404;border:2px solid #ffe082;display:block;}
 .fb.bad{background:#ffebee;color:var(--red);border:2px solid #ef9a9a;display:block;}
-
-/* BUTTONS */
-.chk-btn{
-  background:linear-gradient(135deg,var(--navy),#2a4a8e);color:#fff;
-  border:none;border-radius:25px;padding:11px 28px;font-size:.95em;
-  font-weight:700;cursor:pointer;transition:all .25s;margin-top:14px;
-  box-shadow:0 4px 12px rgba(26,58,110,.3);
-}
-.chk-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,58,110,.4);}
-.chk-btn:active{transform:translateY(0);}
-
-.ex-footer{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:20px;padding-top:14px;border-top:1px solid #eee;
-}
-.nav-btn{
-  background:transparent;border:2px solid var(--gold);color:var(--brown);
-  border-radius:20px;padding:8px 18px;cursor:pointer;font-size:.92em;
-  font-weight:600;transition:all .2s;
-}
+.btn{background:linear-gradient(135deg,var(--navy),#2a4a8e);color:#fff;border:none;border-radius:22px;padding:9px 22px;font-size:.9em;font-weight:700;cursor:pointer;transition:all .2s;margin-top:10px;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,58,110,.3);}
+.nav{display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:1px solid #eee;}
+.nav-btn{background:transparent;border:2px solid var(--gold);color:#5c3d1a;border-radius:18px;padding:7px 16px;cursor:pointer;font-size:.88em;font-weight:600;transition:all .2s;}
 .nav-btn:hover{background:var(--gold);color:#1a1a2e;}
-.nav-btn:disabled{opacity:.28;cursor:default;pointer-events:none;}
 .nav-btn.fwd{background:var(--gold);color:#1a1a2e;}
-.nav-btn.fwd:hover{background:var(--dkgold);color:#fff;}
-
-/* EX1 – MATCH */
-.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.m-word{
-  background:#deeaff;border:2px solid #90b4e8;border-radius:10px;
-  padding:9px 13px;cursor:pointer;font-weight:700;color:var(--blue);
-  text-align:center;transition:all .2s;font-size:.92em;
-}
-.m-word:hover{background:#c5d9f7;}
-.m-word.sel{background:var(--navy);color:#fff;border-color:var(--navy);}
-.m-word.done{background:#e8f5e9;color:var(--green);border-color:#81c784;pointer-events:none;}
-.m-def{
-  background:#fff3e0;border:2px solid #ffcc80;border-radius:10px;
-  padding:9px 13px;cursor:pointer;color:var(--brown);
-  text-align:left;font-size:.87em;transition:all .2s;line-height:1.4;
-}
-.m-def:hover{background:#ffe0b2;}
-.m-def.sel{background:#e65100;color:#fff;border-color:#e65100;}
-.m-def.done{background:#e8f5e9;color:var(--green);border-color:#81c784;pointer-events:none;}
-
-/* EX2 – ORDER */
-.ord-item{
-  display:flex;align-items:center;gap:10px;background:#f8f8f8;
-  border:2px solid #ddd;border-radius:10px;padding:11px 14px;margin-bottom:8px;
-}
-.ord-item.correct{border-color:#81c784;background:#e8f5e9;}
-.ord-item.wrong{border-color:#ef9a9a;background:#ffebee;}
-.ord-btns{display:flex;gap:4px;flex-shrink:0;}
-.ord-n{
-  width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);
-  background:#fff;color:var(--brown);font-weight:700;font-size:.82em;
-  cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;
-}
-.ord-n:hover,.ord-n.active{background:var(--gold);color:#1a1a2e;}
-.ord-sentence{font-size:.92em;line-height:1.5;}
-
-/* EX3 – DIALOGUE */
-.dlg-line{
-  display:flex;align-items:flex-start;gap:10px;
-  border-radius:12px;margin-bottom:11px;padding:11px 14px;
-}
-.dlg-a{background:#e3f0ff;}
-.dlg-b{background:#f3e5f5;flex-direction:row-reverse;}
-.dlg-name{font-size:.78em;font-weight:700;color:var(--navy);white-space:nowrap;min-width:55px;padding-top:2px;}
-.dlg-text{font-size:.92em;line-height:1.65;}
-.blank{
-  display:inline-block;min-width:80px;border-bottom:2px solid var(--gold);
-  padding:0 6px;color:var(--brown);font-weight:700;
-  background:rgba(201,162,39,.08);border-radius:4px;cursor:pointer;
-  text-align:center;
-}
-.blank.filled{color:var(--navy);}
-.blank.ok{background:#e8f5e9;color:var(--green);border-color:#81c784;}
-.blank.bad{background:#ffebee;color:var(--red);border-color:#ef9a9a;}
-
-/* EX4 – UNSCRAMBLE */
-.scr-item{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
-.scr-label{
-  background:var(--gold);color:#1a1a2e;border-radius:20px;
-  padding:5px 14px;font-weight:700;font-size:.95em;letter-spacing:2px;min-width:140px;text-align:center;
-}
-.scr-inp{
-  border:2px solid #ccc;border-radius:9px;padding:7px 12px;
-  font-size:.93em;width:160px;outline:none;transition:border-color .2s;text-transform:uppercase;
-}
-.scr-inp:focus{border-color:var(--blue);}
-.scr-inp.ok{border-color:var(--green);background:#e8f5e9;}
-.scr-inp.bad{border-color:var(--red);background:#ffebee;}
-.scr-hint{font-size:.8em;color:#999;font-style:italic;}
-
-/* EX5 – TRUE/FALSE */
-.passage{
-  background:#f5f5f0;border-radius:10px;padding:16px 18px;
-  margin-bottom:18px;font-size:.92em;line-height:1.75;
-  border-left:4px solid var(--gold);
-}
-.passage strong{color:var(--navy);}
-.tf-item{
-  display:flex;align-items:flex-start;gap:10px;
-  background:#f9f9f9;border:2px solid #e8e8e8;border-radius:10px;
-  padding:10px 13px;margin-bottom:8px;
-}
-.tf-item.ok{border-color:#81c784;background:#e8f5e9;}
-.tf-item.bad{border-color:#ef9a9a;background:#ffebee;}
-.tf-q{flex:1;font-size:.91em;line-height:1.5;padding-top:4px;}
-.tf-btns{display:flex;gap:5px;flex-shrink:0;}
-.tf-btn{
-  width:34px;height:34px;border-radius:50%;font-weight:700;font-size:.78em;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;justify-content:center;
-}
-.tf-t{border:2px solid var(--green);color:var(--green);background:#fff;}
-.tf-f{border:2px solid var(--red);color:var(--red);background:#fff;}
-.tf-t:hover,.tf-t.active{background:var(--green);color:#fff;}
-.tf-f:hover,.tf-f.active{background:var(--red);color:#fff;}
-
-/* EX6,EX11 – MULTIPLE CHOICE */
-.mc-item{background:#f9f9f9;border:2px solid #e8e8e8;border-radius:10px;padding:13px 15px;margin-bottom:12px;}
-.mc-item.ok{border-color:#81c784;}
-.mc-item.bad{border-color:#ef9a9a;}
-.mc-q{font-size:.93em;font-weight:600;margin-bottom:9px;line-height:1.5;}
-.mc-opts{display:flex;flex-wrap:wrap;gap:7px;}
-.mc-opt{
-  background:#fff;border:2px solid #ccc;border-radius:20px;
-  padding:5px 14px;cursor:pointer;font-size:.88em;transition:all .2s;
-}
-.mc-opt:hover{border-color:var(--blue);color:var(--blue);}
+/* Exercise-specific styles */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px;}
+.vocab-card{background:#f0f4ff;border:2px solid #bdd4ff;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .2s;}
+.vocab-card:hover{border-color:var(--blue);transform:scale(1.03);}
+.vocab-card .emoji{font-size:1.8em;display:block;margin-bottom:4px;}
+.vocab-card .word{font-weight:700;color:var(--navy);font-size:.9em;}
+.vocab-card.revealed .word{color:var(--green);}
+.spell-area{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;justify-content:center;}
+.spell-slot{width:38px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3em;font-weight:700;border:2px dashed #ccc;background:#f9f9f9;transition:all .2s;}
+.spell-slot.filled{border:2px solid var(--green);background:#e8f5e9;color:var(--green);}
+.spell-slot.wrong{border:2px solid var(--red);background:#ffebee;color:var(--red);animation:shake .4s;}
+.spell-slot.space{width:14px;border:none;background:transparent;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+.letter-bank{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:8px 0;}
+.letter-btn{width:36px;height:36px;border-radius:8px;background:#fff;border:2px solid #ddd;color:#333;font-size:1.1em;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.letter-btn:hover{border-color:var(--gold);background:#fff8e1;}
+.letter-btn.used{opacity:.25;pointer-events:none;}
+.mc-item{background:#f9f9f9;border:2px solid #e8e8e8;border-radius:10px;padding:11px 13px;margin-bottom:9px;}
+.mc-item.ok{border-color:#81c784;background:#e8f5e9;}
+.mc-item.bad{border-color:#ef9a9a;background:#ffebee;}
+.mc-q{font-size:.9em;font-weight:600;margin-bottom:7px;line-height:1.4;}
+.mc-opts{display:flex;flex-wrap:wrap;gap:6px;}
+.mc-opt{background:#fff;border:2px solid #ccc;border-radius:18px;padding:4px 13px;cursor:pointer;font-size:.85em;transition:all .2s;}
+.mc-opt:hover{border-color:var(--blue);}
 .mc-opt.sel{background:var(--blue);color:#fff;border-color:var(--blue);}
 .mc-opt.right{background:var(--green);color:#fff;border-color:var(--green);}
 .mc-opt.wrong{background:var(--red);color:#fff;border-color:var(--red);}
-
-/* EX7 – CHANT */
-.chant{
-  background:linear-gradient(135deg,#0d1b3e,#1a2e5a);
-  border-radius:14px;padding:22px 24px;color:#fff;
-  font-family:'Georgia',serif;line-height:2.4;font-size:1.02em;
-}
-.cblank{
-  display:inline-block;min-width:75px;border-bottom:2px solid var(--gold);
-  padding:0 7px;color:var(--gold);font-weight:700;
-  background:rgba(201,162,39,.12);border-radius:4px;text-align:center;cursor:pointer;
-}
-.cblank.filled{color:#ffd166;}
-.cblank.ok{color:#81c784;border-color:#81c784;}
-.cblank.bad{color:#ef9a9a;border-color:#ef9a9a;}
-
-/* EX8 – IRREGULAR PS */
-.ps-item{
-  background:#f9f9f9;border:2px solid #e8e8e8;border-radius:10px;
-  padding:11px 14px;margin-bottom:10px;display:flex;
-  align-items:center;flex-wrap:wrap;gap:8px;
-}
-.ps-item.ok{border-color:#81c784;background:#e8f5e9;}
-.ps-item.bad{border-color:#ef9a9a;background:#ffebee;}
-.ps-pre{font-size:.92em;color:#333;}
-.ps-inp{
-  border:2px solid #ccc;border-radius:8px;padding:5px 11px;
-  font-size:.92em;width:130px;outline:none;text-align:center;transition:border-color .2s;
-}
-.ps-inp:focus{border-color:var(--blue);}
-.ps-inp.ok{border-color:var(--green);background:#e8f5e9;}
-.ps-inp.bad{border-color:var(--red);background:#ffebee;}
-.ps-post,.ps-base{font-size:.92em;color:#333;}
-.ps-base{color:#999;font-style:italic;font-size:.82em;}
-
-/* EX9 – SYLLABLES */
-.syl-words{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
-.syl-btn{
-  background:#fff;border:2px solid var(--gold);border-radius:20px;
-  padding:5px 14px;cursor:pointer;font-size:.9em;font-weight:600;color:var(--brown);transition:all .2s;
-}
-.syl-btn:hover{background:var(--gold);color:#1a1a2e;}
-.syl-btn.placed{opacity:.3;pointer-events:none;}
-.syl-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.syl-cat{
-  background:#f0f0f0;border:2px dashed #ccc;border-radius:12px;
-  padding:14px 10px;text-align:center;min-height:100px;cursor:pointer;transition:border-color .2s;
-}
-.syl-cat:hover{border-color:var(--gold);}
-.syl-cat.active-target{border-color:var(--gold);background:rgba(201,162,39,.08);}
-.syl-cat-title{font-weight:700;color:var(--navy);margin-bottom:10px;font-size:.88em;}
-.syl-placed{
-  background:var(--navy);color:#fff;border-radius:20px;
-  padding:3px 11px;font-size:.82em;margin:2px;display:inline-block;
-}
-
-/* EX10 – MATCH EXHIBITS */
-.exh-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.exh-left-btn{
-  background:#deeaff;border:2px solid #90b4e8;border-radius:10px;
-  padding:9px 13px;cursor:pointer;font-weight:700;color:var(--blue);
-  text-align:center;transition:all .2s;font-size:.9em;
-}
-.exh-left-btn:hover{background:#c5d9f7;}
-.exh-left-btn.sel{background:var(--navy);color:#fff;}
-.exh-left-btn.done{background:#e8f5e9;color:var(--green);border-color:#81c784;pointer-events:none;}
-.exh-right-btn{
-  background:#fff3e0;border:2px solid #ffcc80;border-radius:10px;
-  padding:9px 13px;cursor:pointer;color:var(--brown);
-  text-align:left;font-size:.84em;transition:all .2s;line-height:1.4;
-}
-.exh-right-btn:hover{background:#ffe0b2;}
-.exh-right-btn.sel{background:#e65100;color:#fff;border-color:#e65100;}
-.exh-right-btn.done{background:#e8f5e9;color:var(--green);border-color:#81c784;pointer-events:none;}
-
-/* EX12 – WRITING */
-.wrt-prompt{background:#f9f9f9;border:2px solid #e8e8e8;border-radius:10px;padding:13px 15px;margin-bottom:11px;}
-.wrt-start{font-weight:600;color:var(--navy);margin-bottom:7px;font-size:.92em;}
-.wrt-ta{
-  width:100%;border:2px solid #ccc;border-radius:8px;padding:9px 12px;
-  font-size:.92em;resize:vertical;min-height:65px;outline:none;font-family:inherit;
-  line-height:1.5;transition:border-color .2s;
-}
-.wrt-ta:focus{border-color:var(--blue);}
-.wrt-good{color:var(--green);font-size:.85em;font-weight:600;margin-top:5px;display:none;}
-
-/* RESULTS */
-#results{
-  display:none;text-align:center;padding:40px 24px;background:var(--card);
-  border-radius:16px;border:2px solid rgba(201,162,39,.3);
-  box-shadow:0 6px 24px rgba(0,0,0,.1);margin-top:12px;
-}
-.res-icon{font-size:5em;display:block;margin-bottom:16px;animation:bounce 1s infinite alternate;}
-@keyframes bounce{from{transform:scale(1);}to{transform:scale(1.1);}}
-.res-title{font-size:2.2em;color:var(--gold);margin-bottom:10px;}
-.res-score{font-size:1.8em;color:var(--navy);margin-bottom:8px;}
-.res-stars{font-size:2.4em;margin-bottom:8px;}
-.res-msg{font-size:1.05em;color:#555;margin-bottom:28px;line-height:1.5;}
-.res-retry{background:var(--gold);color:#1a1a2e;border:none;border-radius:25px;padding:12px 32px;font-size:1em;font-weight:700;cursor:pointer;transition:all .25s;}
-.res-retry:hover{background:var(--dkgold);color:#fff;}
-
-@media(max-width:560px){
-  .match-grid,.exh-grid{grid-template-columns:1fr;}
-  .syl-cats{grid-template-columns:1fr;}
-}
+.gap-sentence{background:#f9f9f9;border:2px solid #e8e8e8;border-radius:10px;padding:10px 13px;margin-bottom:8px;font-size:.9em;line-height:1.6;}
+.gap-input{border:none;border-bottom:2px solid var(--gold);background:rgba(201,162,39,.08);padding:2px 8px;font-size:.95em;width:100px;text-align:center;outline:none;font-family:inherit;border-radius:3px;}
+.gap-input:focus{border-color:var(--blue);}
+.gap-input.ok{border-color:var(--green);background:#e8f5e9;}
+.gap-input.bad{border-color:var(--red);background:#ffebee;}
+.sort-container{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+.sort-box{background:#f5f5f5;border:2px dashed #ccc;border-radius:12px;padding:12px;min-height:80px;text-align:center;}
+.sort-box h4{font-size:.82em;color:var(--navy);margin-bottom:8px;}
+.sort-tag{display:inline-block;background:var(--navy);color:#fff;border-radius:16px;padding:3px 10px;font-size:.82em;margin:2px;}
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.wb-btn{background:var(--gold);color:#1a1a2e;border:none;border-radius:18px;padding:5px 12px;font-size:.85em;font-weight:600;cursor:pointer;transition:all .2s;}
+.wb-btn:hover{background:#9e7b10;color:#fff;}
+.wb-btn.used{opacity:.25;pointer-events:none;}
+.wb-btn.sel{outline:3px solid var(--navy);}
+.story-text{background:#f9f7f0;border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:.88em;line-height:1.7;border-left:4px solid var(--gold);max-height:250px;overflow-y:auto;}
+.tf-row{display:flex;align-items:center;gap:8px;background:#f9f9f9;border:2px solid #e8e8e8;border-radius:8px;padding:8px 11px;margin-bottom:6px;}
+.tf-row.ok{border-color:#81c784;background:#e8f5e9;}
+.tf-row.bad{border-color:#ef9a9a;background:#ffebee;}
+.tf-q{flex:1;font-size:.86em;line-height:1.4;}
+.tf-btn{width:30px;height:30px;border-radius:50%;font-weight:700;font-size:.72em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.tf-t{border:2px solid var(--green);color:var(--green);background:#fff;}
+.tf-f{border:2px solid var(--red);color:var(--red);background:#fff;}
+.tf-t:hover,.tf-t.on{background:var(--green);color:#fff;}
+.tf-f:hover,.tf-f.on{background:var(--red);color:#fff;}
+#results{display:none;text-align:center;padding:30px;background:var(--card);border-radius:14px;border:2px solid rgba(201,162,39,.3);margin-top:12px;}
+.r-icon{font-size:4em;display:block;margin-bottom:12px;}
+.r-title{font-size:1.8em;color:var(--gold);margin-bottom:8px;}
+.r-score{font-size:1.4em;color:var(--navy);margin-bottom:6px;}
+.r-stars{font-size:2em;margin-bottom:6px;}
+.r-msg{color:#555;margin-bottom:20px;}
+@media(max-width:500px){.vocab-grid{grid-template-columns:repeat(2,1fr);}.sort-container{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>In the Museum</h1>
-  <p class="meta">Supplementary Practice Activities &nbsp;·&nbsp; Unit 1</p>
-  <p class="tracks">🎵 CD1 Tracks 14 – 25 &nbsp;|&nbsp; 12 Exercises</p>
+<h1>🏛️ Unit 1: In the Museum</h1>
+<p>Super Minds 4 · CD1 Tracks 14–25 · Practice Activities</p>
 </header>
-
-<div class="sticky-bar">
-  <div class="score-badge">✅ <span id="sc">0</span> / 12</div>
-  <div class="tab-row" id="tab-row"></div>
+<div class="sticky">
+<div class="score-badge">✅ <span id="sc">0</span>/10</div>
+<div class="tabs" id="tabs"></div>
 </div>
-
-<div class="note-banner">
-  📚 <strong>Note:</strong> These are original supplementary practice exercises inspired by the "In the Museum" unit theme — vocabulary, reading, grammar (past simple), pronunciation, and writing.
+<main id="main"></main>
+<div id="results" style="max-width:860px;margin:12px auto;padding:0 14px;">
+<span class="r-icon" id="ri"></span>
+<div class="r-title" id="rt"></div>
+<div class="r-stars" id="rs"></div>
+<div class="r-score" id="rsc"></div>
+<div class="r-msg" id="rm"></div>
+<button class="btn" onclick="location.reload()">🔄 Try Again</button>
 </div>
-
-<main>
-
-<!-- ══════════════════════════════════════════
-     EX 1 · CD1-14 · Vocabulary Match
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-1">
-<div class="ex-head">
-  <div class="ex-num">1</div>
-  <div><h2>Vocabulary Match</h2><p>Match each word to its meaning</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 14</div>
-  <div class="instruct">Click a <strong>blue word</strong>, then click the matching <strong>yellow definition</strong>. Complete all 8 pairs!</div>
-  <div class="match-grid" id="ex1-grid"></div>
-  <button class="chk-btn" onclick="chk1()">✓ Check</button>
-  <div class="fb" id="fb1"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" disabled>◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(2)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 2 · CD1-15 · Put in Order
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-2">
-<div class="ex-head">
-  <div class="ex-num">2</div>
-  <div><h2>Put in Order</h2><p>Number the sentences to make a story</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 15</div>
-  <div class="instruct">Click the numbers <strong>1 → 5</strong> to put the museum visit in the correct order.</div>
-  <div id="ex2-items"></div>
-  <button class="chk-btn" onclick="chk2()">✓ Check</button>
-  <div class="fb" id="fb2"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(1)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(3)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 3 · CD1-16 · Dialogue: Complete
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-3">
-<div class="ex-head">
-  <div class="ex-num">3</div>
-  <div><h2>Complete the Dialogue</h2><p>Click a word from the box to fill each gap</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 16</div>
-  <div class="instruct">Click a word from the <strong>word bank</strong> below, then click a blank <strong>[ _ _ _ ]</strong> to fill it in.</div>
-  <div class="wbank" id="ex3-bank"></div>
-  <div id="ex3-dlg"></div>
-  <button class="chk-btn" onclick="chk3()">✓ Check</button>
-  <div class="fb" id="fb3"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(2)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(4)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 4 · CD1-17 · Unscramble
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-4">
-<div class="ex-head">
-  <div class="ex-num">4</div>
-  <div><h2>Unscramble the Words</h2><p>Rearrange the letters to spell each word</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 17</div>
-  <div class="instruct">Look at the scrambled letters and type the correct word. Use the <em>hint</em> to help you!</div>
-  <div id="ex4-items"></div>
-  <button class="chk-btn" onclick="chk4()">✓ Check</button>
-  <div class="fb" id="fb4"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(3)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(5)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 5 · CD1-18 · Read: True or False
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-5">
-<div class="ex-head">
-  <div class="ex-num">5</div>
-  <div><h2>Read and Answer: True or False?</h2><p>Read the story, then decide!</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 18</div>
-  <div class="instruct">Read the story carefully. Click <strong>T</strong> (True) or <strong>F</strong> (False) for each sentence.</div>
-  <div class="passage">
-    <strong>Sam's School Trip</strong><br><br>
-    Sam's class visited the town museum last Tuesday. They arrived at ten o'clock in the morning. Their guide, Mrs Chen, met them at the entrance and gave everyone a map.<br><br>
-    The first room they entered was the Ancient Egypt gallery. Near the door stood a tall stone statue of a pharaoh. In the centre of the room, there was a mummy in a glass case. The label said it was more than 3,500 years old!<br><br>
-    Next, the children went upstairs to the Prehistoric Gallery. Sam's favourite exhibit was a complete dinosaur skeleton displayed in the middle of the room. The guide explained that this type of dinosaur ate plants and lived about 150 million years ago.<br><br>
-    After their lunch break, the class visited the Medieval Hall. They saw armour, shields, and swords used by knights long ago. A large painting of a famous battle hung on the wall.<br><br>
-    At the end of the visit, each student wrote three facts in their notebook. Sam couldn't wait to tell her family about everything she had seen!
-  </div>
-  <div id="ex5-items"></div>
-  <button class="chk-btn" onclick="chk5()">✓ Check</button>
-  <div class="fb" id="fb5"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(4)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(6)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 6 · CD1-19 · Past Simple – Regular
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-6">
-<div class="ex-head">
-  <div class="ex-num">6</div>
-  <div><h2>Grammar: Past Simple</h2><p>Regular verbs — choose the correct form</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 19</div>
-  <div class="instruct">Click the correct <strong>past simple</strong> form of the verb to complete each sentence.</div>
-  <div id="ex6-items"></div>
-  <button class="chk-btn" onclick="chk6()">✓ Check</button>
-  <div class="fb" id="fb6"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(5)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(7)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 7 · CD1-20 · Chant: Fill in the Blanks
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-7">
-<div class="ex-head">
-  <div class="ex-num">7</div>
-  <div><h2>Complete the Chant</h2><p>Click words from the box to fill each gap</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 20</div>
-  <div class="instruct">Choose a word from the <strong>word bank</strong>, then click the blank where it belongs. Listen to the rhythm!</div>
-  <div class="wbank" id="ex7-bank"></div>
-  <div class="chant" id="ex7-chant"></div>
-  <button class="chk-btn" onclick="chk7()">✓ Check</button>
-  <div class="fb" id="fb7"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(6)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(8)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 8 · CD1-21 · Past Simple – Irregular
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-8">
-<div class="ex-head">
-  <div class="ex-num">8</div>
-  <div><h2>Irregular Past Simple</h2><p>Type the correct past simple form</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 21</div>
-  <div class="instruct">Write the <strong>past simple</strong> of the verb in brackets to complete each sentence.</div>
-  <div id="ex8-items"></div>
-  <button class="chk-btn" onclick="chk8()">✓ Check</button>
-  <div class="fb" id="fb8"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(7)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(9)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 9 · CD1-22 · Pronunciation: Syllables
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-9">
-<div class="ex-head">
-  <div class="ex-num">9</div>
-  <div><h2>How Many Syllables?</h2><p>Sort words by the number of syllables</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 22</div>
-  <div class="instruct">Click a <strong>word</strong>, then click the correct <strong>category box</strong> to sort it. Count each beat: <em>mu·se·um = 3</em></div>
-  <div class="syl-words" id="ex9-words"></div>
-  <div class="syl-cats" id="ex9-cats"></div>
-  <button class="chk-btn" onclick="chk9()">✓ Check</button>
-  <div class="fb" id="fb9"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(8)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(10)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 10 · CD1-23 · Match the Exhibits
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-10">
-<div class="ex-head">
-  <div class="ex-num">10</div>
-  <div><h2>Match the Exhibits</h2><p>Match each exhibit to its description</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 23</div>
-  <div class="instruct">Click an <strong>exhibit name</strong> (blue), then click its <strong>description</strong> (yellow) to make a pair.</div>
-  <div class="exh-grid" id="ex10-grid"></div>
-  <button class="chk-btn" onclick="chk10()">✓ Check</button>
-  <div class="fb" id="fb10"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(9)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(11)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 11 · CD1-24 · Review Quiz
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-11">
-<div class="ex-head">
-  <div class="ex-num">11</div>
-  <div><h2>Review Quiz</h2><p>Vocabulary &amp; grammar — circle the best answer</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 24</div>
-  <div class="instruct">Click the best answer for each question.</div>
-  <div id="ex11-items"></div>
-  <button class="chk-btn" onclick="chk11()">✓ Check</button>
-  <div class="fb" id="fb11"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(10)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="goEx(12)">Next ▶</button>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     EX 12 · CD1-25 · My Museum Visit
-══════════════════════════════════════════ -->
-<section class="ex" id="ex-12">
-<div class="ex-head">
-  <div class="ex-num">12</div>
-  <div><h2>My Museum Visit</h2><p>Complete the sentences about your own museum trip</p></div>
-</div>
-<div class="ex-body">
-  <div class="track-tag">🎵 CD1 Track 25</div>
-  <div class="instruct">Imagine you visited a museum. Complete each sentence in your own words. Use the <strong>past simple</strong>!</div>
-  <div id="ex12-items"></div>
-  <button class="chk-btn" onclick="chk12()">✓ Check &amp; Save</button>
-  <div class="fb" id="fb12"></div>
-  <div class="ex-footer">
-    <button class="nav-btn" onclick="goEx(11)">◀ Previous</button>
-    <button class="nav-btn fwd" onclick="showResults()">🏆 Results</button>
-  </div>
-</div>
-</section>
-
-<!-- RESULTS -->
-<div id="results">
-  <span class="res-icon" id="r-icon">🏆</span>
-  <div class="res-title" id="r-title">Well done!</div>
-  <div class="res-stars" id="r-stars"></div>
-  <div class="res-score" id="r-score"></div>
-  <div class="res-msg" id="r-msg"></div>
-  <button class="res-retry" onclick="restart()">🔄 Try Again</button>
-</div>
-
-</main>
 
 <script>
-// ════════════════════════════════════════
-//  DATA
-// ════════════════════════════════════════
-
-// EX1 – vocabulary pairs
-const ex1Pairs=[
-  {w:'museum',    d:'A building where historical objects are kept and shown to the public'},
-  {w:'ancient',   d:'Very old, belonging to a time thousands of years in the past'},
-  {w:'exhibit',   d:'An object put on display for visitors to look at'},
-  {w:'fossil',    d:'The preserved remains or shape of a plant or animal from long ago'},
-  {w:'artifact',  d:'An object made by people from an earlier period in history'},
-  {w:'gallery',   d:'A large room or hall where art or historical objects are displayed'},
-  {w:'sculpture', d:'A work of art made by carving or shaping stone, metal, or wood'},
-  {w:'century',   d:'A period of one hundred years'},
+// ═══════════════════════════════════════
+// DATA based on actual audio transcriptions
+// ═══════════════════════════════════════
+const EXERCISES = [
+  // 1: Track 14 - Vocabulary words
+  { track:14, title:"Vocabulary: Listen & Spell", page:"Student's Book p.10",
+    type:"spell", words:["queen","knight","crown","helmet","necklace","bracelet","belt","shield","bow and arrow","sword"] },
+  // 2: Track 16 - must/mustn't
+  { track:16, title:"Grammar: must / mustn't", page:"Student's Book p.11",
+    type:"mc", items:[
+      {q:"You ___ wear a helmet when you ride a bike.", opts:["must","mustn't","can"], ans:"must"},
+      {q:"You ___ swim here. It's dangerous!", opts:["must","mustn't","can"], ans:"mustn't"},
+      {q:"You ___ be quiet in the museum.", opts:["must","mustn't","don't"], ans:"must"},
+      {q:"You ___ touch the exhibits.", opts:["must","mustn't","can"], ans:"mustn't"},
+      {q:"You ___ run in the corridors.", opts:["must","mustn't","can"], ans:"mustn't"},
+      {q:"You ___ listen to the guide.", opts:["must","mustn't","don't"], ans:"must"},
+    ]},
+  // 3: Track 18 - Song (listen)
+  { track:18, title:"Song: Listen & Enjoy", page:"Student's Book p.12",
+    type:"listen", text:"Listen to the song carefully. How many museum objects can you hear? After listening, click the objects mentioned in the song.",
+    objects:["crown","shield","helmet","sword","necklace","belt","bow and arrow"],
+    distractors:["bicycle","computer","telephone"] },
+  // 4: Track 19 - Give + pronoun + object
+  { track:19, title:"Grammar: Give + pronoun + object", page:"Student's Book p.13",
+    type:"gap", sentences:[
+      {pre:"Give", gap:"us", post:"the coats, please."},
+      {pre:"Give", gap:"him", post:"the shield, please."},
+      {pre:"Give", gap:"me", post:"the crown, please."},
+      {pre:"Give", gap:"her", post:"the necklace, please."},
+      {pre:"Give", gap:"them", post:"the swords, please."},
+    ]},
+  // 5: Track 20 - Practice give sentences
+  { track:20, title:"Practice: Give + pronoun", page:"Student's Book p.13",
+    type:"match", pairs:[
+      {obj:"the book", pron:"me"},
+      {obj:"the apple", pron:"her"},
+      {obj:"the camera", pron:"him"},
+      {obj:"the pencils", pron:"us"},
+      {obj:"the sandwiches", pron:"them"},
+    ]},
+  // 6: Track 21 - Story comprehension
+  { track:21, title:"Story: The Explorers", page:"Student's Book pp.14-15",
+    type:"tf", intro:"Listen to the story about the Explorers and the knight, then answer True or False.",
+    items:[
+      {q:"The knight had a sword.", ans:true},
+      {q:"The children decided to run away from the knight.", ans:true},
+      {q:"Buster the dog helped them.", ans:true},
+      {q:"The first symbol was on the knight's helmet.", ans:false},
+      {q:"The rhyme line was: 'Behind the picture in the frame.'", ans:true},
+      {q:"Horax felt happy at the end.", ans:false},
+    ]},
+  // 7: Track 22 - Pronunciation ow
+  { track:22, title:"Pronunciation: The 'ow' sound", page:"Student's Book p.15",
+    type:"listen_repeat", text:"Listen and repeat the 'ow' sound. Can you hear it in these words? Practice saying them aloud!",
+    words:["bow","crown","how","now","town","flower","brown","cow"] },
+  // 8: Track 23 - Missing words dictation
+  { track:23, title:"Listening: Missing Words", page:"Workbook p.15",
+    type:"dictation", dialogues:[
+      {context:"Dialogue 1: Something falls from a tree", gaps:[
+        {pre:"Look out! What was that? The", gap:"tree", post:"! It just fell!"},
+        {pre:"Wow, that was", gap:"close", post:"!"},
+      ]},
+      {context:"Dialogue 2: A birthday present", gaps:[
+        {pre:"What's Mum going to buy you for your", gap:"birthday", post:"?"},
+        {pre:"I haven't got an", gap:"idea", post:"."},
+        {pre:"What? Nothing? That's what you bought me last", gap:"year", post:"!"},
+      ]},
+    ]},
+  // 9: Track 24 - Phonics: two ow sounds
+  { track:24, title:"Phonics: Two 'ow' sounds", page:"Workbook p.15",
+    type:"sort", categories:[
+      {name:"Sound 1: /əʊ/ (like 'go')", words:["yellow","bow","window","show","snow"]},
+      {name:"Sound 2: /aʊ/ (like 'out')", words:["brown","crown","how","town","now","flower"]},
+    ]},
+  // 10: Track 25 - Story comprehension
+  { track:25, title:"Story: The Secret of the Egyptian Cat", page:"Student's Book pp.16-17",
+    type:"story_mc", intro:"Listen to the story about Mr. Benson and the gold cat statue, then answer the questions.",
+    questions:[
+      {q:"What was Mr. Benson's job?", opts:["A teacher","A museum director","A policeman"], ans:"A museum director"},
+      {q:"What was his favourite object?", opts:["A gold cat statue","A diamond necklace","An old sword"], ans:"A gold cat statue"},
+      {q:"Where was the statue from?", opts:["Greece","Egypt","Rome"], ans:"Egypt"},
+      {q:"What happened one night?", opts:["The alarm broke","The statue disappeared","The museum burned"], ans:"The statue disappeared"},
+      {q:"Who solved the mystery?", opts:["The police","Mr. Benson","Cleo, his daughter"], ans:"Cleo, his daughter"},
+      {q:"What was the secret?", opts:["Someone stole it","The cat went outside at night","It was a fake"], ans:"The cat went outside at night"},
+    ]},
 ];
 
-// EX2 – ordering
-const ex2Sentences=[
-  {text:'The students travelled to the museum by school bus.',   order:1},
-  {text:'They collected a museum map at the entrance.',          order:2},
-  {text:'The guide showed them the ancient Egyptian room first.',order:3},
-  {text:'After lunch, the class explored the dinosaur gallery.', order:4},
-  {text:'Everyone chose a souvenir in the museum shop to take home.',order:5},
-];
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let current = 0;
+let done = new Array(EXERCISES.length).fill(false);
+let spellState = {};
 
-// EX3 – dialogue
-const ex3Bank=['gallery','entrance','skeleton','ago','swords','battle'];
-const ex3Lines=[
-  {spk:'Tom',    side:'a', text:'Excuse me! Is this the way to the dinosaur [gallery]?'},
-  {spk:'Guide',  side:'b', text:'Yes, go straight ahead and turn left at the [entrance].'},
-  {spk:'Tom',    side:'a', text:'Thank you! How old is the T-Rex [skeleton] on display?'},
-  {spk:'Guide',  side:'b', text:'It lived about 65 million years [ago].'},
-  {spk:'Tom',    side:'a', text:'And did people really fight with those old [swords]?'},
-  {spk:'Guide',  side:'b', text:'Yes! Knights used swords and shields in [battle].'},
-];
-
-// EX4 – unscramble
-const ex4Items=[
-  {scrambled:'UMUSEM',  answer:'MUSEUM',   hint:'A place to see history'},
-  {scrambled:'LOISFS',  answer:'FOSSIL',   hint:'Remains from millions of years ago'},
-  {scrambled:'YALGREL', answer:'GALLERY',  hint:'A room full of displays'},
-  {scrambled:'TNINAEC', answer:'ANCIENT',  hint:'Very, very old'},
-  {scrambled:'TAUTES',  answer:'STATUE',   hint:'A stone or metal figure'},
-  {scrambled:'MMUDY',   answer:'MUMMY',    hint:'Preserved in ancient Egypt'},
-];
-
-// EX5 – True / False
-const ex5TF=[
-  {q:'Sam visited the museum on a Tuesday.',                     ans:true},
-  {q:'The guide\'s name was Mr Chen.',                           ans:false},
-  {q:'The mummy was more than 3,500 years old.',                 ans:true},
-  {q:'The prehistoric dinosaur in the gallery ate meat.',        ans:false},
-  {q:'The class visited the Medieval Hall before lunch.',        ans:false},
-  {q:'At the end, each student wrote facts in their notebook.',  ans:true},
-];
-
-// EX6 – past simple regular (multiple choice)
-const ex6Items=[
-  {pre:'The archaeologist',              opts:['discover','discovers','discovered'], ans:'discovered', post:'an ancient coin in the desert.'},
-  {pre:'The museum',                     opts:['opened','opens','opening'],          ans:'opened',     post:'a new Egyptian exhibition last month.'},
-  {pre:'Maya',                           opts:['look','looked','looking'],           ans:'looked',     post:'carefully at every exhibit.'},
-  {pre:'The students',                   opts:['walk','walks','walked'],             ans:'walked',     post:'through three different galleries.'},
-  {pre:'The guide',                      opts:['explained','explain','explaining'],  ans:'explained',  post:'the history of the artefacts.'},
-  {pre:'They',                           opts:['close','closing','closed'],          ans:'closed',     post:'their notebooks at the end of the tour.'},
-];
-
-// EX7 – chant (original composition)
-// Blanks: see · me · white · sight · stone · known
-const ex7Bank=['see','me','white','sight','stone','known'];
-const ex7ChantHTML=
-  'Step inside the museum, what do you [see]?<br>'+
-  'Ancient wonders waiting for both you and [me]!<br>'+
-  'An Egyptian mummy wrapped in cloth of [white],<br>'+
-  'A towering T-Rex — what an amazing [sight]!<br>'+
-  'Old pottery and shields and statues made of [stone],<br>'+
-  'History\'s most brilliant secrets to be [known]!<br>'+
-  'Visit the museum — come and explore!';
-
-// EX8 – irregular past simple
-const ex8Items=[
-  {pre:'The children',  base:'go',   ans:'went',  post:'to the museum on Friday.'},
-  {pre:'Maya',          base:'see',  ans:'saw',   post:'a real mummy for the first time.'},
-  {pre:'The guide',     base:'tell', ans:'told',  post:'them all about ancient Egypt.'},
-  {pre:'A sculptor',    base:'make', ans:'made',  post:'this beautiful statue 2,000 years ago.'},
-  {pre:'Ancient people',base:'build',ans:'built', post:'those enormous stone pyramids.'},
-  {pre:'The scientist', base:'find', ans:'found', post:'a fossil buried deep underground.'},
-];
-
-// EX9 – syllables
-const ex9Words=[
-  {w:'fossil',      syl:2},{w:'ancient',    syl:2},{w:'helmet',   syl:2},{w:'statue',    syl:2},
-  {w:'museum',      syl:3},{w:'gallery',    syl:3},{w:'artifact', syl:3},
-  {w:'exhibition',  syl:4},{w:'discovery',  syl:4},
-];
-const ex9Cats=[2,3,4];
-
-// EX10 – match exhibits
-const ex10Pairs=[
-  {name:'Egyptian Mummy',      desc:'A preserved body wrapped in linen cloth, found inside a pyramid'},
-  {name:'Dinosaur Skeleton',   desc:'The complete bones of a giant prehistoric reptile on a frame'},
-  {name:'Ancient Greek Vase',  desc:'A painted clay pot decorated with figures of gods and athletes'},
-  {name:'Roman Coins',         desc:'Small metal discs stamped with the face of an emperor'},
-  {name:'Medieval Sword',      desc:'A long sharp blade used by knights during the Middle Ages'},
-];
-
-// EX11 – review quiz
-const ex11Items=[
-  {q:'Where can you usually see ancient artefacts and fossils?',
-   opts:['a supermarket','a museum','a sports hall'],     ans:'a museum'},
-  {q:'What is the past simple of "go"?',
-   opts:['goed','going','went'],                          ans:'went'},
-  {q:'What do you call the preserved remains of an animal found in rock?',
-   opts:['a statue','a fossil','a coin'],                 ans:'a fossil'},
-  {q:'What is the past simple of "see"?',
-   opts:['sawed','saw','seed'],                           ans:'saw'},
-  {q:'The museum _____ a new exhibition last year.',
-   opts:['opens','opening','opened'],                     ans:'opened'},
-  {q:'A large room where paintings or sculptures are displayed is called a …',
-   opts:['a gallery','a kitchen','a corridor'],           ans:'a gallery'},
-  {q:'The archaeologist _____ a golden mask buried underground.',
-   opts:['find','finding','found'],                       ans:'found'},
-  {q:'"_____ the children at the museum yesterday?"',
-   opts:['Was','Were','Did'],                             ans:'Were'},
-];
-
-// EX12 – writing starters
-const ex12Starters=[
-  'Last week, I visited a museum and I saw …',
-  'My favourite exhibit was … because …',
-  'The museum guide told us that …',
-  'I was surprised when I learned that …',
-  'I would like to visit the museum again because …',
-];
-
-// ════════════════════════════════════════
-//  STATE
-// ════════════════════════════════════════
-let currentEx=1;
-let done=new Array(13).fill(false);   // 1-indexed
-let scores=new Array(13).fill(0);
-
-// ════════════════════════════════════════
-//  RENDER HELPERS
-// ════════════════════════════════════════
-function $id(id){return document.getElementById(id);}
-
-function setFb(id,cls,msg){
-  const el=$id('fb'+id);
-  el.className='fb '+cls;
-  el.innerHTML=msg;
-}
-
-function markDone(n,pts){
-  scores[n]=pts;
-  if(!done[n]){ done[n]=true; }
-  $id('sc').textContent=done.slice(1).filter(Boolean).length;
+// ═══════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════
+function init(){
   buildTabs();
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+  EXERCISES.forEach((ex,i) => {
+    const div = document.createElement('section');
+    div.className = 'ex'; div.id = 'ex-'+i;
+    div.innerHTML = `
+      <div class="ex-head">
+        <div class="ex-num">${i+1}</div>
+        <div><h2>${ex.title}</h2><small>🎵 CD1 Track ${ex.track} · ${ex.page}</small></div>
+      </div>
+      <div class="ex-body">
+        <div class="audio-wrap">
+          <div class="audio-label">🎧 Listen to Track ${ex.track}:</div>
+          <audio controls preload="none"><source src="audio/${ex.track}.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div id="content-${i}"></div>
+        <div class="fb" id="fb-${i}"></div>
+        <div class="nav">
+          <button class="nav-btn" onclick="go(${i-1})" ${i===0?'disabled':''}>◀ Previous</button>
+          <button class="nav-btn fwd" onclick="${i===EXERCISES.length-1?'showResults()':'go('+(i+1)+')'}">${i===EXERCISES.length-1?'🏆 Results':'Next ▶'}</button>
+        </div>
+      </div>`;
+    main.appendChild(div);
+  });
+  EXERCISES.forEach((ex,i) => renderExercise(ex,i));
+  go(0);
 }
 
-// ════════════════════════════════════════
-//  TABS
-// ════════════════════════════════════════
 function buildTabs(){
-  const row=$id('tab-row');
-  row.innerHTML='';
-  for(let i=1;i<=12;i++){
-    const b=document.createElement('button');
-    b.className='tab-btn'+(i===currentEx?' current':'')+(done[i]?' done':'');
-    b.textContent=i;
-    b.onclick=(()=>{const x=i;return()=>goEx(x);})();
-    row.appendChild(b);
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = '';
+  for(let i=0;i<EXERCISES.length;i++){
+    const t = document.createElement('button');
+    t.className = 'tab'+(i===current?' active':'')+(done[i]?' done':'');
+    t.textContent = i+1;
+    t.onclick = ()=>go(i);
+    tabs.appendChild(t);
   }
 }
 
-function goEx(n){
+function go(n){
+  if(n<0||n>=EXERCISES.length) return;
   document.querySelectorAll('.ex').forEach(e=>e.classList.remove('show'));
-  $id('ex-'+n).classList.add('show');
-  $id('results').style.display='none';
-  currentEx=n;
-  buildTabs();
+  document.getElementById('ex-'+n).classList.add('show');
+  document.getElementById('results').style.display='none';
+  current=n; buildTabs();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ════════════════════════════════════════
-//  EX 1 – MATCH (vocabulary)
-// ════════════════════════════════════════
-let ex1SelWord=null, ex1SelDef=null, ex1Matched=new Set();
+function setFb(i,cls,msg){const el=document.getElementById('fb-'+i);el.className='fb '+cls;el.innerHTML=msg;}
+function markDone(i){if(!done[i]){done[i]=true;document.getElementById('sc').textContent=done.filter(Boolean).length;buildTabs();}}
 
-function buildEx1(){
-  const grid=$id('ex1-grid');
-  const shuffledDefs=[...ex1Pairs].sort(()=>Math.random()-.5);
+// ═══════════════════════════════════════
+// EXERCISE RENDERERS
+// ═══════════════════════════════════════
+function renderExercise(ex,i){
+  const el = document.getElementById('content-'+i);
+  switch(ex.type){
+    case 'spell': renderSpell(ex,i,el); break;
+    case 'mc': renderMC(ex,i,el); break;
+    case 'listen': renderListen(ex,i,el); break;
+    case 'gap': renderGap(ex,i,el); break;
+    case 'match': renderMatch(ex,i,el); break;
+    case 'tf': renderTF(ex,i,el); break;
+    case 'listen_repeat': renderListenRepeat(ex,i,el); break;
+    case 'dictation': renderDictation(ex,i,el); break;
+    case 'sort': renderSort(ex,i,el); break;
+    case 'story_mc': renderStoryMC(ex,i,el); break;
+  }
+}
 
-  const leftCol=document.createElement('div');
-  const rightCol=document.createElement('div');
-  leftCol.style.cssText='display:flex;flex-direction:column;gap:8px;';
-  rightCol.style.cssText='display:flex;flex-direction:column;gap:8px;';
+// --- SPELL (Track 14) ---
+function renderSpell(ex,i,el){
+  spellState[i] = {wordIdx:0, slotIdx:0};
+  el.innerHTML = `
+    <div class="instruct">Listen to each word, then spell it by clicking the letters below. Complete all 10 words!</div>
+    <div style="text-align:center;margin-bottom:8px;font-size:.85em;color:#888;">Word <span id="sp-count-${i}">1</span> of ${ex.words.length}</div>
+    <div id="sp-word-${i}" style="text-align:center;font-size:1.8em;margin-bottom:6px;">🎯</div>
+    <div class="spell-area" id="sp-slots-${i}"></div>
+    <div class="letter-bank" id="sp-bank-${i}"></div>
+    <button class="btn" id="sp-skip-${i}" onclick="spellSkip(${i})">Skip →</button>`;
+  loadSpellWord(ex,i);
+}
 
-  ex1Pairs.forEach(p=>{
-    const b=document.createElement('button');
-    b.className='m-word';b.textContent=p.w;b.dataset.word=p.w;
-    b.onclick=()=>selectWord1(b);
-    leftCol.appendChild(b);
+function loadSpellWord(ex,i){
+  const st = spellState[i];
+  const word = ex.words[st.wordIdx];
+  st.slotIdx = 0;
+  document.getElementById('sp-count-'+i).textContent = st.wordIdx+1;
+  document.getElementById('sp-word-'+i).textContent = '❓ Word '+(st.wordIdx+1);
+  // slots
+  const slotsEl = document.getElementById('sp-slots-'+i);
+  slotsEl.innerHTML = '';
+  for(let c of word){
+    if(c===' '){slotsEl.innerHTML+='<div class="spell-slot space"></div>';}
+    else{slotsEl.innerHTML+=`<div class="spell-slot" id="ss-${i}-${slotsEl.querySelectorAll('.spell-slot:not(.space)').length}"></div>`;}
+  }
+  // Rebuild slots with proper IDs
+  slotsEl.innerHTML = '';
+  let idx=0;
+  for(let c of word){
+    if(c===' '){const d=document.createElement('div');d.className='spell-slot space';slotsEl.appendChild(d);}
+    else{const d=document.createElement('div');d.className='spell-slot';d.id=`ss-${i}-${idx}`;slotsEl.appendChild(d);idx++;}
+  }
+  // letter bank - word letters shuffled + some extras
+  const letters = word.replace(/ /g,'').split('');
+  const extras = 'abcdefghijklmnopqrstuvwxyz'.split('').filter(l=>!letters.includes(l)).sort(()=>Math.random()-.5).slice(0,4);
+  const bank = [...letters,...extras].sort(()=>Math.random()-.5);
+  const bankEl = document.getElementById('sp-bank-'+i);
+  bankEl.innerHTML = '';
+  bank.forEach((l,li)=>{
+    const b = document.createElement('button');
+    b.className='letter-btn'; b.textContent=l.toUpperCase(); b.id=`lb-${i}-${li}`;
+    b.onclick=()=>spellPick(ex,i,l,li);
+    bankEl.appendChild(b);
   });
-  shuffledDefs.forEach(p=>{
-    const b=document.createElement('button');
-    b.className='m-def';b.textContent=p.d;b.dataset.word=p.w;
-    b.onclick=()=>selectDef1(b);
-    rightCol.appendChild(b);
-  });
-  grid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:10px;';
-  grid.innerHTML='';
-  grid.appendChild(leftCol);
-  grid.appendChild(rightCol);
 }
 
-function selectWord1(b){
-  if(b.classList.contains('done'))return;
-  document.querySelectorAll('.m-word').forEach(x=>x.classList.remove('sel'));
-  b.classList.add('sel'); ex1SelWord=b;
-  tryMatch1();
-}
-function selectDef1(b){
-  if(b.classList.contains('done'))return;
-  document.querySelectorAll('.m-def').forEach(x=>x.classList.remove('sel'));
-  b.classList.add('sel'); ex1SelDef=b;
-  tryMatch1();
-}
-function tryMatch1(){
-  if(!ex1SelWord||!ex1SelDef)return;
-  if(ex1SelWord.dataset.word===ex1SelDef.dataset.word){
-    ex1SelWord.classList.replace('sel','done');
-    ex1SelDef.classList.replace('sel','done');
-    ex1Matched.add(ex1SelWord.dataset.word);
-    if(ex1Matched.size===ex1Pairs.length){
-      setFb(1,'ok','🎉 All 8 pairs matched! Excellent vocabulary work!');
-      markDone(1,1);
+function spellPick(ex,i,letter,btnIdx){
+  const st = spellState[i];
+  const word = ex.words[st.wordIdx];
+  const plain = word.replace(/ /g,'');
+  if(st.slotIdx >= plain.length) return;
+  const correct = plain[st.slotIdx];
+  const slot = document.getElementById(`ss-${i}-${st.slotIdx}`);
+  if(letter === correct){
+    slot.textContent = letter.toUpperCase();
+    slot.className = 'spell-slot filled';
+    document.getElementById(`lb-${i}-${btnIdx}`).classList.add('used');
+    st.slotIdx++;
+    if(st.slotIdx >= plain.length){
+      document.getElementById('sp-word-'+i).textContent = '✅ ' + word;
+      setTimeout(()=>spellNext(ex,i),800);
     }
   } else {
-    ex1SelWord.classList.remove('sel');
-    ex1SelDef.classList.remove('sel');
+    slot.className = 'spell-slot wrong';
+    setTimeout(()=>{slot.className='spell-slot';},500);
   }
-  ex1SelWord=null; ex1SelDef=null;
-}
-function chk1(){
-  const n=ex1Matched.size;
-  if(n===ex1Pairs.length){setFb(1,'ok','🎉 Perfect! All 8 pairs matched!');markDone(1,1);}
-  else{setFb(1,'part',`👍 ${n} of 8 pairs matched. Keep going!`);}
 }
 
-// ════════════════════════════════════════
-//  EX 2 – ORDER
-// ════════════════════════════════════════
-let ex2Assigned={};   // index -> number chosen
+function spellSkip(i){const ex=EXERCISES[i]; spellNext(ex,i);}
 
-function buildEx2(){
-  const c=$id('ex2-items');c.innerHTML='';
-  ex2Sentences.forEach((s,i)=>{
-    const div=document.createElement('div');
-    div.className='ord-item'; div.dataset.idx=i;
+function spellNext(ex,i){
+  const st = spellState[i];
+  st.wordIdx++;
+  if(st.wordIdx >= ex.words.length){
+    setFb(i,'ok','🎉 All 10 words completed!');
+    markDone(i);
+  } else { loadSpellWord(ex,i); }
+}
 
-    const btns=document.createElement('div');
-    btns.className='ord-btns';
-    for(let n=1;n<=5;n++){
-      const b=document.createElement('button');
-      b.className='ord-n'; b.textContent=n;
-      b.onclick=(()=>{const num=n,idx=i;return()=>pickOrder(idx,num,b);})();
-      btns.appendChild(b);
-    }
-    const span=document.createElement('span');
-    span.className='ord-sentence';span.textContent=s.text;
-
-    div.appendChild(btns);div.appendChild(span);
-    c.appendChild(div);
+// --- MULTIPLE CHOICE (Track 16, also used for story) ---
+function renderMC(ex,i,el){
+  let html = `<div class="instruct">Choose the correct answer for each sentence.</div>`;
+  ex.items.forEach((item,qi)=>{
+    html += `<div class="mc-item" id="mc-${i}-${qi}"><div class="mc-q">${qi+1}. ${item.q}</div><div class="mc-opts">`;
+    item.opts.forEach(o=>{html+=`<button class="mc-opt" onclick="mcPick(${i},${qi},'${o}',this)">${o}</button>`;});
+    html += `</div></div>`;
   });
+  html += `<button class="btn" onclick="chkMC(${i})">✓ Check</button>`;
+  el.innerHTML = html;
 }
 
-function pickOrder(idx,num,btn){
-  // un-assign previous holder of this number
-  Object.keys(ex2Assigned).forEach(k=>{
-    if(ex2Assigned[k]===num && +k!==idx){
-      delete ex2Assigned[k];
-      // clear that row's active
-      const row=$id('ex2-items').children[k];
-      row.querySelectorAll('.ord-n').forEach(b=>b.classList.remove('active'));
-    }
-  });
-  ex2Assigned[idx]=num;
-  const row=$id('ex2-items').children[idx];
-  row.querySelectorAll('.ord-n').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+function mcPick(i,qi,val,btn){
+  const row=document.getElementById(`mc-${i}-${qi}`);
+  row.querySelectorAll('.mc-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  row.dataset.ans = val;
 }
 
-function chk2(){
-  let correct=0;
-  ex2Sentences.forEach((s,i)=>{
-    const row=$id('ex2-items').children[i];
-    if(ex2Assigned[i]===s.order){correct++;row.className='ord-item correct';}
-    else if(ex2Assigned[i]!==undefined){row.className='ord-item wrong';}
-  });
-  if(correct===5){setFb(2,'ok','🎉 Perfect order! The story makes sense!');markDone(2,1);}
-  else if(correct>=3){setFb(2,'part',`👍 ${correct}/5 correct. Check the highlighted sentences.`);}
-  else{setFb(2,'bad',`❌ ${correct}/5 correct. Think about what happens first at a museum visit.`);}
-}
-
-// ════════════════════════════════════════
-//  EX 3 – DIALOGUE
-// ════════════════════════════════════════
-let ex3SelWord=null, ex3Blanks={};
-
-function buildEx3(){
-  // bank
-  const bank=$id('ex3-bank');
-  bank.innerHTML='<div class="wbank-lbl">📦 Word Bank:</div>';
-  ex3Bank.forEach(w=>{
-    const b=document.createElement('button');
-    b.className='wtag'; b.textContent=w; b.dataset.w=w; b.id='ex3w-'+w;
-    b.onclick=()=>selectBankWord3(b);
-    bank.appendChild(b);
-  });
-
-  // dialogue
-  const dlg=$id('ex3-dlg'); dlg.innerHTML='';
-  ex3Lines.forEach((line,li)=>{
-    const div=document.createElement('div');
-    div.className='dlg-line dlg-'+line.side;
-    const name=document.createElement('div');name.className='dlg-name';name.textContent=line.spk;
-    const text=document.createElement('div');text.className='dlg-text';
-
-    let blankIdx=0;
-    const parts=line.text.split(/\[([^\]]+)\]/);
-    parts.forEach((part,pi)=>{
-      if(pi%2===0){
-        text.appendChild(document.createTextNode(part));
-      } else {
-        const sp=document.createElement('span');
-        sp.className='blank'; sp.textContent='_____';
-        sp.dataset.ans=part; sp.dataset.id=`${li}_${blankIdx}`;
-        sp.onclick=()=>fillBlank3(sp);
-        ex3Blanks[`${li}_${blankIdx}`]=sp;
-        text.appendChild(sp);
-        blankIdx++;
-      }
-    });
-    div.appendChild(name);div.appendChild(text);dlg.appendChild(div);
-  });
-}
-
-function selectBankWord3(b){
-  document.querySelectorAll('.wtag').forEach(x=>x.style.outline='none');
-  if(ex3SelWord===b){ex3SelWord=null;return;}
-  ex3SelWord=b;
-  b.style.outline='3px solid #1a2e5a';
-}
-
-function fillBlank3(sp){
-  if(!ex3SelWord)return;
-  if(sp.classList.contains('ok'))return;
-  sp.textContent=ex3SelWord.dataset.w;
-  sp.classList.add('filled');
-  sp.dataset.chosen=ex3SelWord.dataset.w;
-  ex3SelWord.classList.add('used');
-  ex3SelWord.style.outline='none';
-  ex3SelWord=null;
-}
-
-function chk3(){
-  let ok=0,tot=0;
-  Object.values(ex3Blanks).forEach(sp=>{
-    tot++;
-    if(sp.dataset.chosen===sp.dataset.ans){sp.classList.add('ok');ok++;}
-    else if(sp.dataset.chosen){sp.classList.add('bad');}
-  });
-  if(ok===tot){setFb(3,'ok','🎉 Perfect dialogue! Every answer is correct!');markDone(3,1);}
-  else{setFb(3,'part',`👍 ${ok}/${tot} correct. Red blanks show errors.`);}
-}
-
-// ════════════════════════════════════════
-//  EX 4 – UNSCRAMBLE
-// ════════════════════════════════════════
-function buildEx4(){
-  const c=$id('ex4-items');c.innerHTML='';
-  ex4Items.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='scr-item';
-    const lbl=document.createElement('div');lbl.className='scr-label';lbl.textContent=item.scrambled;
-    const inp=document.createElement('input');
-    inp.className='scr-inp'; inp.placeholder='Type here…'; inp.id='scr-'+i;
-    inp.maxLength=20; inp.autocomplete='off'; inp.autocorrect='off'; inp.spellcheck=false;
-    const hint=document.createElement('span');hint.className='scr-hint';hint.textContent='💡 '+item.hint;
-    div.appendChild(lbl);div.appendChild(inp);div.appendChild(hint);
-    c.appendChild(div);
-  });
-}
-
-function chk4(){
-  let ok=0;
-  ex4Items.forEach((item,i)=>{
-    const inp=$id('scr-'+i);
-    const val=inp.value.trim().toUpperCase();
-    if(val===item.answer){inp.className='scr-inp ok';ok++;}
-    else{inp.className='scr-inp bad';}
-  });
-  if(ok===ex4Items.length){setFb(4,'ok','🎉 All words unscrambled correctly!');markDone(4,1);}
-  else{setFb(4,'part',`👍 ${ok}/${ex4Items.length} correct. Red inputs show incorrect answers.`);}
-}
-
-// ════════════════════════════════════════
-//  EX 5 – TRUE / FALSE
-// ════════════════════════════════════════
-let ex5Answers={};
-
-function buildEx5(){
-  const c=$id('ex5-items');c.innerHTML='';
-  ex5TF.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='tf-item';div.id='tf-row-'+i;
-    const q=document.createElement('div');q.className='tf-q';q.textContent=(i+1)+'. '+item.q;
-    const btns=document.createElement('div');btns.className='tf-btns';
-    const tBtn=document.createElement('button');tBtn.className='tf-btn tf-t';tBtn.textContent='T';
-    const fBtn=document.createElement('button');fBtn.className='tf-btn tf-f';fBtn.textContent='F';
-    tBtn.onclick=()=>{ex5Answers[i]=true;tBtn.classList.add('active');fBtn.classList.remove('active');};
-    fBtn.onclick=()=>{ex5Answers[i]=false;fBtn.classList.add('active');tBtn.classList.remove('active');};
-    btns.appendChild(tBtn);btns.appendChild(fBtn);
-    div.appendChild(btns);div.appendChild(q);c.appendChild(div);
-  });
-}
-
-function chk5(){
-  let ok=0;
-  ex5TF.forEach((item,i)=>{
-    const row=$id('tf-row-'+i);
-    if(ex5Answers[i]===undefined)return;
-    if(ex5Answers[i]===item.ans){row.className='tf-item ok';ok++;}
-    else{row.className='tf-item bad';}
-  });
-  const answered=Object.keys(ex5Answers).length;
-  if(answered<ex5TF.length){setFb(5,'part','⚠️ Please answer all 6 questions first.');return;}
-  if(ok===ex5TF.length){setFb(5,'ok','🎉 All correct! Great reading comprehension!');markDone(5,1);}
-  else{setFb(5,'part',`👍 ${ok}/${ex5TF.length} correct. Read the passage again.`);}
-}
-
-// ════════════════════════════════════════
-//  EX 6 – PAST SIMPLE REGULAR
-// ════════════════════════════════════════
-let ex6Sel={};
-
-function buildEx6(){
-  const c=$id('ex6-items');c.innerHTML='';
-  ex6Items.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='mc-item';div.id='mc6-'+i;
-    const q=document.createElement('div');q.className='mc-q';
-    q.textContent=`${i+1}. ${item.pre} __________ ${item.post}`;
-    const opts=document.createElement('div');opts.className='mc-opts';
-    item.opts.forEach(o=>{
-      const b=document.createElement('button');b.className='mc-opt';b.textContent=o;
-      b.onclick=()=>{
-        opts.querySelectorAll('.mc-opt').forEach(x=>x.classList.remove('sel'));
-        b.classList.add('sel'); ex6Sel[i]=o;
-      };
-      opts.appendChild(b);
-    });
-    div.appendChild(q);div.appendChild(opts);c.appendChild(div);
-  });
-}
-
-function chk6(){
-  let ok=0;
-  ex6Items.forEach((item,i)=>{
-    const div=$id('mc6-'+i);
-    const opts=div.querySelectorAll('.mc-opt');
-    opts.forEach(b=>{
+function chkMC(i){
+  const ex=EXERCISES[i]; let ok=0;
+  ex.items.forEach((item,qi)=>{
+    const row=document.getElementById(`mc-${i}-${qi}`);
+    const chosen=row.dataset.ans;
+    row.querySelectorAll('.mc-opt').forEach(b=>{
       if(b.textContent===item.ans)b.classList.add('right');
       if(b.classList.contains('sel')&&b.textContent!==item.ans)b.classList.add('wrong');
     });
-    if(ex6Sel[i]===item.ans)ok++;
+    if(chosen===item.ans)ok++;
   });
-  if(ok===ex6Items.length){setFb(6,'ok','🎉 Perfect! You know your regular past simple!');markDone(6,1);}
-  else{setFb(6,'part',`👍 ${ok}/${ex6Items.length} correct. Green shows the right answer.`);}
+  if(ok===ex.items.length){setFb(i,'ok',`🎉 Perfect! ${ok}/${ex.items.length} correct!`);markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${ex.items.length} correct. Green shows the right answer.`);
 }
 
-// ════════════════════════════════════════
-//  EX 7 – CHANT
-// ════════════════════════════════════════
-let ex7SelWord=null, ex7Blanks={};
+// --- LISTEN & SELECT (Track 18) ---
+function renderListen(ex,i,el){
+  const all = [...ex.objects,...ex.distractors].sort(()=>Math.random()-.5);
+  let html = `<div class="instruct">${ex.text}</div><div class="vocab-grid">`;
+  all.forEach(w=>{html+=`<div class="vocab-card" id="lc-${i}-${w.replace(/ /g,'_')}" onclick="toggleListen(${i},'${w.replace(/ /g,'_')}')"><span class="word">${w}</span></div>`;});
+  html += `</div><button class="btn" onclick="chkListen(${i})">✓ Check</button>`;
+  el.innerHTML = html;
+}
 
-function buildEx7(){
-  const bank=$id('ex7-bank');
-  bank.innerHTML='<div class="wbank-lbl">📦 Word Bank:</div>';
-  ex7Bank.forEach(w=>{
-    const b=document.createElement('button');
-    b.className='wtag';b.textContent=w;b.dataset.w=w;b.id='ex7w-'+w;
-    b.onclick=()=>{
-      document.querySelectorAll('#ex7-bank .wtag').forEach(x=>x.style.outline='none');
-      if(ex7SelWord===b){ex7SelWord=null;return;}
-      ex7SelWord=b; b.style.outline='3px solid #c9a227';
-    };
-    bank.appendChild(b);
+function toggleListen(i,w){
+  const el=document.getElementById(`lc-${i}-${w}`);
+  el.classList.toggle('revealed');
+}
+
+function chkListen(i){
+  const ex=EXERCISES[i]; let ok=0,wrong=0;
+  ex.objects.forEach(w=>{
+    const el=document.getElementById(`lc-${i}-${w.replace(/ /g,'_')}`);
+    if(el.classList.contains('revealed'))ok++;
   });
-
-  // Build chant HTML
-  const chant=$id('ex7-chant');
-  let html=ex7ChantHTML;
-  let blankIdx=0;
-  html=html.replace(/\[([^\]]+)\]/g,(match,word)=>{
-    const id='c7-'+blankIdx++;
-    ex7Blanks[id]=word;
-    return `<span class="cblank" id="${id}" data-ans="${word}" onclick="fillChantBlank('${id}')">_____</span>`;
+  ex.distractors.forEach(w=>{
+    const el=document.getElementById(`lc-${i}-${w.replace(/ /g,'_')}`);
+    if(el.classList.contains('revealed'))wrong++;
   });
-  chant.innerHTML=html;
+  if(ok===ex.objects.length&&wrong===0){setFb(i,'ok','🎉 Perfect! You found all the museum objects!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${ex.objects.length} correct objects found. ${wrong} wrong selections.`);
 }
 
-function fillChantBlank(id){
-  if(!ex7SelWord)return;
-  const sp=$id(id);
-  if(sp.classList.contains('ok'))return;
-  sp.textContent=ex7SelWord.dataset.w;
-  sp.classList.add('filled');
-  sp.dataset.chosen=ex7SelWord.dataset.w;
-  ex7SelWord.classList.add('used');
-  ex7SelWord.style.outline='none';
-  ex7SelWord=null;
-}
-
-function chk7(){
-  let ok=0,tot=0;
-  Object.keys(ex7Blanks).forEach(id=>{
-    const sp=$id(id); tot++;
-    if(sp.dataset.chosen===sp.dataset.ans){sp.classList.add('ok');ok++;}
-    else if(sp.dataset.chosen){sp.classList.add('bad');}
+// --- GAP FILL (Track 19) ---
+function renderGap(ex,i,el){
+  const bank = ex.sentences.map(s=>s.gap).sort(()=>Math.random()-.5);
+  let html = `<div class="instruct">Listen and complete each sentence with the correct pronoun (me, him, her, us, them).</div>`;
+  html += `<div class="word-bank">${bank.map(w=>`<button class="wb-btn" onclick="selectWB(this)">${w}</button>`).join('')}</div>`;
+  ex.sentences.forEach((s,si)=>{
+    html += `<div class="gap-sentence">${si+1}. ${s.pre} <input class="gap-input" id="gi-${i}-${si}" data-ans="${s.gap}" readonly placeholder="___" onclick="fillGap(${i},${si})"> ${s.post}</div>`;
   });
-  if(ok===tot){setFb(7,'ok','🎉 All blanks correct! The chant rhymes perfectly!');markDone(7,1);}
-  else{setFb(7,'part',`👍 ${ok}/${tot} correct.`);}
+  html += `<button class="btn" onclick="chkGap(${i})">✓ Check</button>`;
+  el.innerHTML = html;
 }
 
-// ════════════════════════════════════════
-//  EX 8 – IRREGULAR PAST SIMPLE
-// ════════════════════════════════════════
-function buildEx8(){
-  const c=$id('ex8-items');c.innerHTML='';
-  ex8Items.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='ps-item';div.id='ps8-'+i;
-    const pre=document.createElement('span');pre.className='ps-pre';pre.textContent=item.pre+' ';
-    const inp=document.createElement('input');
-    inp.className='ps-inp';inp.id='ps8inp-'+i;inp.placeholder='?';
-    inp.autocomplete='off';inp.autocorrect='off';inp.spellcheck=false;
-    const post=document.createElement('span');post.className='ps-post';post.textContent=' '+item.post;
-    const base=document.createElement('span');base.className='ps-base';base.textContent='('+item.base+')';
-    div.appendChild(base);div.appendChild(pre);div.appendChild(inp);div.appendChild(post);
-    c.appendChild(div);
+let selectedWB = null;
+function selectWB(btn){
+  document.querySelectorAll('.wb-btn').forEach(b=>b.classList.remove('sel'));
+  if(selectedWB===btn){selectedWB=null;return;}
+  selectedWB=btn; btn.classList.add('sel');
+}
+
+function fillGap(i,si){
+  if(!selectedWB)return;
+  const inp=document.getElementById(`gi-${i}-${si}`);
+  inp.value=selectedWB.textContent;
+  selectedWB.classList.add('used');
+  selectedWB.classList.remove('sel');
+  selectedWB=null;
+}
+
+function chkGap(i){
+  const ex=EXERCISES[i]; let ok=0;
+  ex.sentences.forEach((s,si)=>{
+    const inp=document.getElementById(`gi-${i}-${si}`);
+    if(inp.value.trim().toLowerCase()===s.gap){inp.classList.add('ok');ok++;}
+    else{inp.classList.add('bad');}
   });
+  if(ok===ex.sentences.length){setFb(i,'ok','🎉 All correct!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${ex.sentences.length} correct.`);
 }
 
-function chk8(){
-  let ok=0;
-  ex8Items.forEach((item,i)=>{
-    const inp=$id('ps8inp-'+i);
-    const row=$id('ps8-'+i);
-    const val=inp.value.trim().toLowerCase();
-    if(val===item.ans){inp.className='ps-inp ok';row.className='ps-item ok';ok++;}
-    else{inp.className='ps-inp bad';row.className='ps-item bad';}
+// --- MATCH (Track 20) ---
+function renderMatch(ex,i,el){
+  let html = `<div class="instruct">Match each object with the correct pronoun. Listen to check!</div>`;
+  const shuffledProns = ex.pairs.map(p=>p.pron).sort(()=>Math.random()-.5);
+  html += `<div style="margin:10px 0;">`;
+  ex.pairs.forEach((p,pi)=>{
+    html += `<div class="gap-sentence">${pi+1}. Give <select class="gap-input" id="ms-${i}-${pi}" style="width:80px;border:2px solid var(--gold);border-radius:6px;padding:3px;cursor:pointer;"><option value="">---</option>${['me','him','her','us','them'].map(pr=>`<option value="${pr}">${pr}</option>`).join('')}</select> ${p.obj}, please.</div>`;
   });
-  if(ok===ex8Items.length){setFb(8,'ok','🎉 All irregular verbs correct!');markDone(8,1);}
-  else{setFb(8,'part',`👍 ${ok}/${ex8Items.length} correct.`);}
+  html += `</div><button class="btn" onclick="chkMatch(${i})">✓ Check</button>`;
+  el.innerHTML = html;
 }
 
-// ════════════════════════════════════════
-//  EX 9 – SYLLABLES
-// ════════════════════════════════════════
-let ex9Placed={};  // word -> syl category
-let ex9SelWord=null;
-
-function buildEx9(){
-  ex9Placed={};ex9SelWord=null;
-  const wordsEl=$id('ex9-words');wordsEl.innerHTML='';
-  ex9Words.sort(()=>Math.random()-.5).forEach(item=>{
-    const b=document.createElement('button');b.className='syl-btn';b.textContent=item.w;b.dataset.w=item.w;
-    b.onclick=()=>{
-      document.querySelectorAll('.syl-btn').forEach(x=>x.style.outline='none');
-      if(ex9SelWord===b){ex9SelWord=null;return;}
-      ex9SelWord=b; b.style.outline='3px solid '+(['#1a2e5a'][0]);
-    };
-    wordsEl.appendChild(b);
+function chkMatch(i){
+  const ex=EXERCISES[i]; let ok=0;
+  ex.pairs.forEach((p,pi)=>{
+    const sel=document.getElementById(`ms-${i}-${pi}`);
+    if(sel.value===p.pron){sel.classList.add('ok');ok++;}
+    else{sel.classList.add('bad');}
   });
-  const catsEl=$id('ex9-cats');catsEl.innerHTML='';
-  ex9Cats.forEach(n=>{
-    const d=document.createElement('div');d.className='syl-cat';d.id='sc-'+n;
-    d.innerHTML=`<div class="syl-cat-title">${n} syllable${n>1?'s':''}</div>`;
-    d.onclick=()=>placeSylWord(n);
-    catsEl.appendChild(d);
+  if(ok===ex.pairs.length){setFb(i,'ok','🎉 Perfect matching!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${ex.pairs.length} correct.`);
+}
+
+// --- TRUE/FALSE (Track 21) ---
+function renderTF(ex,i,el){
+  let html = `<div class="instruct">${ex.intro}</div>`;
+  ex.items.forEach((item,qi)=>{
+    html += `<div class="tf-row" id="tf-${i}-${qi}"><div class="tf-q">${qi+1}. ${item.q}</div><button class="tf-btn tf-t" onclick="tfPick(${i},${qi},true,this)">T</button><button class="tf-btn tf-f" onclick="tfPick(${i},${qi},false,this)">F</button></div>`;
   });
+  html += `<button class="btn" onclick="chkTF(${i})">✓ Check</button>`;
+  el.innerHTML = html;
 }
 
-function placeSylWord(n){
-  if(!ex9SelWord)return;
-  const w=ex9SelWord.dataset.w;
-  ex9Placed[w]=n;
-  ex9SelWord.classList.add('placed');
-  ex9SelWord.style.outline='none';
-  const cat=$id('sc-'+n);
-  const sp=document.createElement('span');sp.className='syl-placed';sp.textContent=w;sp.dataset.w=w;
-  cat.appendChild(sp);
-  ex9SelWord=null;
+function tfPick(i,qi,val,btn){
+  const row=document.getElementById(`tf-${i}-${qi}`);
+  row.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  row.dataset.ans = val;
 }
 
-function chk9(){
-  let ok=0;
-  ex9Words.forEach(item=>{
-    if(ex9Placed[item.w]===item.syl)ok++;
+function chkTF(i){
+  const ex=EXERCISES[i]; let ok=0;
+  ex.items.forEach((item,qi)=>{
+    const row=document.getElementById(`tf-${i}-${qi}`);
+    const ans = row.dataset.ans === 'true';
+    if(row.dataset.ans===undefined) return;
+    if(ans===item.ans){row.classList.add('ok');ok++;}
+    else{row.classList.add('bad');}
   });
-  const tot=ex9Words.length;
-  if(ok===tot){setFb(9,'ok','🎉 All words sorted correctly!');markDone(9,1);}
-  else{setFb(9,'part',`👍 ${ok}/${tot} correct. Try again!`);}
+  if(ok===ex.items.length){setFb(i,'ok','🎉 All correct!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${ex.items.length} correct.`);
 }
 
-// ════════════════════════════════════════
-//  EX 10 – MATCH EXHIBITS
-// ════════════════════════════════════════
-let ex10SelLeft=null, ex10Matched=new Set();
-
-function buildEx10(){
-  const grid=$id('ex10-grid');grid.innerHTML='';
-  const leftCol=document.createElement('div');leftCol.style.cssText='display:flex;flex-direction:column;gap:8px;';
-  const rightCol=document.createElement('div');rightCol.style.cssText='display:flex;flex-direction:column;gap:8px;';
-
-  const shuffled=[...ex10Pairs].sort(()=>Math.random()-.5);
-  ex10Pairs.forEach(p=>{
-    const b=document.createElement('button');b.className='exh-left-btn';b.textContent=p.name;b.dataset.name=p.name;
-    b.onclick=()=>selectLeft10(b);leftCol.appendChild(b);
-  });
-  shuffled.forEach(p=>{
-    const b=document.createElement('button');b.className='exh-right-btn';b.textContent=p.desc;b.dataset.name=p.name;
-    b.onclick=()=>selectRight10(b);rightCol.appendChild(b);
-  });
-  grid.appendChild(leftCol);grid.appendChild(rightCol);
+// --- LISTEN & REPEAT (Track 22) ---
+function renderListenRepeat(ex,i,el){
+  let html = `<div class="instruct">${ex.text}</div><div class="vocab-grid">`;
+  ex.words.forEach(w=>{html+=`<div class="vocab-card" onclick="speakWord('${w}')"><span class="emoji">🔊</span><span class="word">${w}</span></div>`;});
+  html += `</div><p style="font-size:.85em;color:#888;margin-top:8px;">Click each word to hear it (uses browser speech). Practice saying them aloud!</p>`;
+  html += `<button class="btn" onclick="markDone(${i});setFb(${i},'ok','✅ Great practice! Keep repeating these words.')">✓ Done Practicing</button>`;
+  el.innerHTML = html;
 }
 
-function selectLeft10(b){
-  if(b.classList.contains('done'))return;
-  document.querySelectorAll('.exh-left-btn').forEach(x=>x.classList.remove('sel'));
-  b.classList.add('sel');ex10SelLeft=b;
-}
-function selectRight10(b){
-  if(!ex10SelLeft||b.classList.contains('done'))return;
-  if(ex10SelLeft.dataset.name===b.dataset.name){
-    ex10SelLeft.classList.replace('sel','done');
-    b.classList.add('done');
-    ex10Matched.add(ex10SelLeft.dataset.name);
-    if(ex10Matched.size===ex10Pairs.length){setFb(10,'ok','🎉 All exhibits matched!');markDone(10,1);}
-  } else {
-    ex10SelLeft.classList.remove('sel');
-  }
-  ex10SelLeft=null;
-}
-function chk10(){
-  const n=ex10Matched.size;
-  if(n===ex10Pairs.length){setFb(10,'ok','🎉 Perfect!');markDone(10,1);}
-  else{setFb(10,'part',`👍 ${n}/${ex10Pairs.length} matched so far.`);}
+function speakWord(w){
+  const u=new SpeechSynthesisUtterance(w);
+  u.lang='en-GB';u.rate=0.75;u.pitch=1.1;
+  speechSynthesis.cancel();speechSynthesis.speak(u);
 }
 
-// ════════════════════════════════════════
-//  EX 11 – REVIEW QUIZ
-// ════════════════════════════════════════
-let ex11Sel={};
-
-function buildEx11(){
-  const c=$id('ex11-items');c.innerHTML='';
-  ex11Items.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='mc-item';div.id='mc11-'+i;
-    const q=document.createElement('div');q.className='mc-q';q.textContent=`${i+1}. ${item.q}`;
-    const opts=document.createElement('div');opts.className='mc-opts';
-    item.opts.forEach(o=>{
-      const b=document.createElement('button');b.className='mc-opt';b.textContent=o;
-      b.onclick=()=>{
-        opts.querySelectorAll('.mc-opt').forEach(x=>x.classList.remove('sel'));
-        b.classList.add('sel');ex11Sel[i]=o;
-      };
-      opts.appendChild(b);
+// --- DICTATION (Track 23) ---
+function renderDictation(ex,i,el){
+  let html = `<div class="instruct">Listen carefully and type the missing words you hear.</div>`;
+  let gIdx=0;
+  ex.dialogues.forEach((dlg,di)=>{
+    html += `<div style="font-weight:600;margin:10px 0 6px;font-size:.85em;color:var(--navy);">${dlg.context}</div>`;
+    dlg.gaps.forEach(g=>{
+      html += `<div class="gap-sentence">${g.pre} <input class="gap-input" id="di-${i}-${gIdx}" data-ans="${g.gap}" placeholder="___"> ${g.post}</div>`;
+      gIdx++;
     });
-    div.appendChild(q);div.appendChild(opts);c.appendChild(div);
   });
+  html += `<button class="btn" onclick="chkDictation(${i},${gIdx})">✓ Check</button>`;
+  el.innerHTML = html;
 }
 
-function chk11(){
+function chkDictation(i,total){
   let ok=0;
-  ex11Items.forEach((item,i)=>{
-    const div=$id('mc11-'+i);
-    div.querySelectorAll('.mc-opt').forEach(b=>{
-      if(b.textContent===item.ans)b.classList.add('right');
-      if(b.classList.contains('sel')&&b.textContent!==item.ans)b.classList.add('wrong');
-    });
-    if(ex11Sel[i]===item.ans)ok++;
-  });
-  if(ok===ex11Items.length){setFb(11,'ok','🎉 Full marks on the review!');markDone(11,1);}
-  else{setFb(11,'part',`👍 ${ok}/${ex11Items.length} correct.`);}
-}
-
-// ════════════════════════════════════════
-//  EX 12 – WRITING
-// ════════════════════════════════════════
-function buildEx12(){
-  const c=$id('ex12-items');c.innerHTML='';
-  ex12Starters.forEach((start,i)=>{
-    const div=document.createElement('div');div.className='wrt-prompt';
-    const lbl=document.createElement('div');lbl.className='wrt-start';lbl.textContent=`${i+1}. ${start}`;
-    const ta=document.createElement('textarea');ta.className='wrt-ta';ta.id='wrt-'+i;
-    ta.placeholder='Write your answer here…';ta.rows=3;
-    div.appendChild(lbl);div.appendChild(ta);c.appendChild(div);
-  });
-}
-
-function chk12(){
-  let filled=0;
-  ex12Starters.forEach((_,i)=>{
-    const ta=$id('wrt-'+i);
-    if(ta.value.trim().length>5)filled++;
-  });
-  if(filled>=3){
-    setFb(12,'ok',`✏️ Great writing! ${filled}/${ex12Starters.length} sentences completed. Make sure you used the past simple!`);
-    markDone(12,1);
-  } else {
-    setFb(12,'part','📝 Please complete at least 3 sentences.');
+  for(let g=0;g<total;g++){
+    const inp=document.getElementById(`di-${i}-${g}`);
+    if(inp.value.trim().toLowerCase()===inp.dataset.ans.toLowerCase()){inp.classList.add('ok');ok++;}
+    else{inp.classList.add('bad');}
   }
+  if(ok===total){setFb(i,'ok','🎉 Perfect dictation!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${total} correct.`);
 }
 
-// ════════════════════════════════════════
-//  RESULTS
-// ════════════════════════════════════════
+// --- SORT (Track 24) ---
+function renderSort(ex,i,el){
+  const allWords = ex.categories.flatMap(c=>c.words).sort(()=>Math.random()-.5);
+  let html = `<div class="instruct">Sort the words by their 'ow' sound. Click a word, then click the correct box.</div>`;
+  html += `<div class="word-bank" id="sortbank-${i}">`;
+  allWords.forEach((w,wi)=>{html+=`<button class="wb-btn" id="sw-${i}-${wi}" data-w="${w}" onclick="selectSort(${i},${wi})">${w}</button>`;});
+  html += `</div><div class="sort-container">`;
+  ex.categories.forEach((cat,ci)=>{
+    html += `<div class="sort-box" id="sbox-${i}-${ci}" onclick="placeSort(${i},${ci})"><h4>${cat.name}</h4></div>`;
+  });
+  html += `</div><button class="btn" onclick="chkSort(${i})">✓ Check</button>`;
+  el.innerHTML = html;
+  window['sortSel'+i] = null;
+  window['sortPlaced'+i] = {};
+}
+
+function selectSort(i,wi){
+  const btn=document.getElementById(`sw-${i}-${wi}`);
+  if(btn.classList.contains('used'))return;
+  document.querySelectorAll(`#sortbank-${i} .wb-btn`).forEach(b=>b.classList.remove('sel'));
+  window['sortSel'+i]={wi,word:btn.dataset.w};
+  btn.classList.add('sel');
+}
+
+function placeSort(i,ci){
+  const sel=window['sortSel'+i];
+  if(!sel)return;
+  const box=document.getElementById(`sbox-${i}-${ci}`);
+  const tag=document.createElement('span');tag.className='sort-tag';tag.textContent=sel.word;
+  box.appendChild(tag);
+  document.getElementById(`sw-${i}-${sel.wi}`).classList.add('used');
+  document.getElementById(`sw-${i}-${sel.wi}`).classList.remove('sel');
+  if(!window['sortPlaced'+i])window['sortPlaced'+i]={};
+  window['sortPlaced'+i][sel.word]=ci;
+  window['sortSel'+i]=null;
+}
+
+function chkSort(i){
+  const ex=EXERCISES[i]; let ok=0,total=0;
+  ex.categories.forEach((cat,ci)=>{
+    cat.words.forEach(w=>{total++;if(window['sortPlaced'+i][w]===ci)ok++;});
+  });
+  if(ok===total){setFb(i,'ok','🎉 All words sorted correctly!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${total} correct.`);
+}
+
+// --- STORY MC (Track 25) ---
+function renderStoryMC(ex,i,el){
+  let html = `<div class="instruct">${ex.intro}</div>`;
+  ex.questions.forEach((q,qi)=>{
+    html += `<div class="mc-item" id="mc-${i}-${qi}"><div class="mc-q">${qi+1}. ${q.q}</div><div class="mc-opts">`;
+    q.opts.forEach(o=>{html+=`<button class="mc-opt" onclick="mcPick(${i},${qi},'${o.replace(/'/g,"\\'")}',this)">${o}</button>`;});
+    html += `</div></div>`;
+  });
+  html += `<button class="btn" onclick="chkStoryMC(${i})">✓ Check</button>`;
+  el.innerHTML = html;
+}
+
+function chkStoryMC(i){
+  const ex=EXERCISES[i]; let ok=0;
+  ex.questions.forEach((q,qi)=>{
+    const row=document.getElementById(`mc-${i}-${qi}`);
+    const chosen=row.dataset.ans;
+    row.querySelectorAll('.mc-opt').forEach(b=>{
+      if(b.textContent===q.ans)b.classList.add('right');
+      if(b.classList.contains('sel')&&b.textContent!==q.ans)b.classList.add('wrong');
+    });
+    if(chosen===q.ans)ok++;
+  });
+  if(ok===ex.questions.length){setFb(i,'ok','🎉 Excellent comprehension!');markDone(i);}
+  else setFb(i,'part',`👍 ${ok}/${ex.questions.length} correct.`);
+}
+
+// --- RESULTS ---
 function showResults(){
   document.querySelectorAll('.ex').forEach(e=>e.classList.remove('show'));
-  $id('results').style.display='block';
-  const sc=done.slice(1).filter(Boolean).length;
-  const p=sc/12;
-  const [icon,title,stars,msg]=
-    p>=.92?['🏆','Museum Expert!',        5,'Outstanding! You know everything about this unit!']:
-    p>=.75?['🌟','Excellent Work!',        4,'You have a really strong understanding of the unit.']:
-    p>=.5 ?['😊','Good Job!',             3,'Well done! Revise the exercises you found tricky.']:
-    p>=.25?['👍','Keep Practising!',      2,'Some good answers! Try the harder exercises again.']:
-           ['💪','Don\'t Give Up!',       1,'Have another go — practice makes perfect!'];
-  $id('r-icon').textContent=icon;
-  $id('r-title').textContent=title;
-  $id('r-stars').textContent='⭐'.repeat(stars)+'☆'.repeat(5-stars);
-  $id('r-score').textContent=`${sc} / 12 exercises completed`;
-  $id('r-msg').textContent=msg;
-  window.scrollTo({top:0,behavior:'smooth'});
+  const res=document.getElementById('results');res.style.display='block';
+  const sc=done.filter(Boolean).length;
+  const p=sc/EXERCISES.length;
+  const [icon,title,stars,msg]=p>=.9?['🏆','Museum Expert!',5,'Outstanding work!']:p>=.7?['🌟','Great Job!',4,'Really well done!']:p>=.5?['😊','Good Effort!',3,'Keep practising!']:p>=.25?['👍','Keep Going!',2,'Try the exercises again!']:['💪','Don\'t Give Up!',1,'Listen again and try!'];
+  document.getElementById('ri').textContent=icon;
+  document.getElementById('rt').textContent=title;
+  document.getElementById('rs').textContent='⭐'.repeat(stars)+'☆'.repeat(5-stars);
+  document.getElementById('rsc').textContent=`${sc} / ${EXERCISES.length} exercises completed`;
+  document.getElementById('rm').textContent=msg;
 }
 
-function restart(){
-  done=new Array(13).fill(false);
-  scores=new Array(13).fill(0);
-  ex1SelWord=null;ex1SelDef=null;ex1Matched=new Set();
-  ex2Assigned={};ex3SelWord=null;ex3Blanks={};
-  ex7SelWord=null;ex7Blanks={};ex9Placed={};ex9SelWord=null;
-  ex10SelLeft=null;ex10Matched=new Set();
-  ex5Answers={};ex6Sel={};ex11Sel={};
-  buildAll();
-  $id('results').style.display='none';
-  goEx(1);
-}
-
-// ════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════
-function buildAll(){
-  buildEx1();buildEx2();buildEx3();buildEx4();buildEx5();
-  buildEx6();buildEx7();buildEx8();buildEx9();buildEx10();
-  buildEx11();buildEx12();
-  buildTabs();
-}
-
-buildAll();
-goEx(1);
+// START
+init();
 </script>
 </body>
 </html>
